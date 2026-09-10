@@ -11,7 +11,7 @@ output: pdf_document
 
 **Section:** APM1110 - SECTION 2
 
-**GitHub Link:**
+**GitHub Link:** https://github.com/jhancazhandracalalang/CALALANG-JC-FA4/blob/main/CALALANG%2C%20JC-FA4.Rmd
 
 # Exercise 7.1
 
