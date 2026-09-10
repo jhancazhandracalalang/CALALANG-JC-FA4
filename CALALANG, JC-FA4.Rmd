@@ -1,0 +1,163 @@
+---
+title: "Probability & Probability Distributions"
+author: 
+date: 
+output: pdf_document
+---
+
+# Formative Assessment 4
+
+**Name:** CALALANG, JHAN CAZHANDRA D.
+
+**Section:** APM1110 - SECTION 2
+
+**GitHub Link:**
+
+# Exercise 7.1
+
+## Item 2
+
+A binary communication channel carries data as one of two sets of signals denoted by 0 and 1. Owing to noise, a transmitted 0 is sometimes received as a 1, and a transmitted 1 is sometimes received as a 0. For a given channel, it can be assumed that a transmitted 0 is correctly received with probability 0.95, and a transmitted 1 is correctly received with probability 0.75. Also, 70% of all messages are transmitted as a 0.
+
+### (a) Probability that a 1 was received
+
+Given:
+
+- P(T = 0) = 0.70
+- P(T = 1) = 0.30
+- P(R = 1 | T = 0) = 0.05
+- P(R = 1 | T = 1) = 0.75
+
+Using the Law of Total Probability:
+
+\[
+P(R = 1) = P(R = 1|T = 0)P(T = 0) + P(R = 1|T = 1)P(T = 1)
+\]
+
+```{r}
+P_T0 <- 0.70
+P_T1 <- 0.30
+
+P_R1_given_T0 <- 1 - 0.95
+P_R1_given_T1 <- 0.75
+
+P_R1 <- P_R1_given_T0 * P_T0 +
+        P_R1_given_T1 * P_T1
+
+P_R1
+```
+
+Therefore, the probability that a 1 was received is:
+
+\[
+\boxed{P(R = 1) = 0.26 = 26\%}
+\]
+
+### (b) Probability that a 1 was transmitted given that a 1 was received
+
+Using Bayes' Theorem:
+
+\[
+P(T = 1|R = 1) =
+\frac{P(R = 1|T = 1)P(T = 1)}
+{P(R = 1)}
+\]
+
+```{r}
+P_T1_given_R1 <- (P_R1_given_T1 * P_T1) / P_R1
+
+P_T1_given_R1
+```
+
+Therefore:
+
+\[
+\boxed{P(T = 1|R = 1) \approx 0.8654 = 86.54\%}
+\]
+
+---
+
+## Item 7
+
+There are three employees working at an IT company: Jane, Amy, and Ava, doing 10%, 30%, and 60% of the programming, respectively. 8% of Jane's work, 5% of Amy's work, and just 1% of Ava's work is in error.
+
+### Overall percentage of error
+
+Given:
+
+- P(Jane) = 0.10
+- P(Amy) = 0.30
+- P(Ava) = 0.60
+- P(Error | Jane) = 0.08
+- P(Error | Amy) = 0.05
+- P(Error | Ava) = 0.01
+
+Using the Law of Total Probability:
+
+\[
+P(Error) = P(Error|Jane)P(Jane) +
+P(Error|Amy)P(Amy) +
+P(Error|Ava)P(Ava)
+\]
+
+```{r}
+P_Jane <- 0.10
+P_Amy <- 0.30
+P_Ava <- 0.60
+
+P_Error_Jane <- 0.08
+P_Error_Amy <- 0.05
+P_Error_Ava <- 0.01
+
+P_Error <- P_Error_Jane * P_Jane +
+           P_Error_Amy * P_Amy +
+           P_Error_Ava * P_Ava
+
+P_Error
+```
+
+The overall percentage of error is:
+
+```{r}
+P_Error * 100
+```
+
+Therefore:
+
+\[
+\boxed{P(Error) = 0.029 = 2.9\%}
+\]
+
+### Most likely person to have written the program
+
+Using Bayes' Theorem:
+
+```{r}
+P_Jane_given_Error <- (P_Error_Jane * P_Jane) / P_Error
+P_Amy_given_Error <- (P_Error_Amy * P_Amy) / P_Error
+P_Ava_given_Error <- (P_Error_Ava * P_Ava) / P_Error
+
+P_Jane_given_Error
+P_Amy_given_Error
+P_Ava_given_Error
+```
+
+The probabilities are:
+
+```{r}
+P_Jane_given_Error * 100
+P_Amy_given_Error * 100
+P_Ava_given_Error * 100
+```
+
+Therefore:
+
+- Jane = 27.59%
+- Amy = 51.72%
+- Ava = 20.69%
+
+Since Amy has the highest probability, **Amy is the most likely person to have written the program with an error.**
+
+\[
+\boxed{\text{Amy, }51.72\%}
+\]
